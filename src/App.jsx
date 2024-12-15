@@ -1,11 +1,13 @@
+import { useSelector } from "react-redux";
+
 function App() {
+  const number = useSelector((store) => store.number);
+
   return (
     <>
-      <div>
-     
-      </div>        
+      <div>{number}</div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
