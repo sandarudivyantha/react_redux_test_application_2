@@ -9,12 +9,12 @@ const numberSlice = createSlice({
   name: "number",
   initialState,
   reducers: {
-    increment: (state, action) => ({
-      number: state.number + action.payload,
-    }),
-    decrement: (state, action) => ({
-      number: state.number - action.payload,
-    }),
+    increment: (state, action) => {
+      state.number += action.payload;
+    },
+    decrement: (state, action) => {
+      state.number -= action.payload;
+    },
   },
 });
 
