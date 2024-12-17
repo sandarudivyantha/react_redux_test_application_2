@@ -17,5 +17,6 @@ const number2Slice = createSlice({
   },
 });
 
+export const numberSlice2Selector = (store) => store.number2Slice;
 export const { increment2, decrement2 } = number2Slice.actions;
 export default number2Slice.reducer;
