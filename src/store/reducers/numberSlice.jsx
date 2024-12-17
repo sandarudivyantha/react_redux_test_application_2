@@ -5,16 +5,24 @@ const initialState = {
   computers: [],
 };
 
+const reducerGen = (key = "number", oparetor = "+") => {
+  if (oparetor === "+") {
+    return (state, action) => {
+      state[key] += action.payload;
+    };
+  } else if (oparetor === "-") {
+    return (state, action) => {
+      state[key] -= action.payload;
+    };
+  }
+};
+
 const numberSlice = createSlice({
   name: "number",
   initialState,
   reducers: {
-    increment: (state, action) => {
-      state.number += action.payload;
-    },
-    decrement: (state, action) => {
-      state.number -= action.payload;
-    },
+    increment: reducerGen(),
+    decrement: reducerGen("number", "-"),
   },
 });
 
