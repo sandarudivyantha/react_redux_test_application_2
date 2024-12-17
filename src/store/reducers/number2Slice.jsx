@@ -1,21 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  number: 0,
+  number2: 0,
 };
 
 const number2Slice = createSlice({
-  name: "number",
+  name: "number2",
   initialState,
   reducers: {
-    increment: (state, action) => {
-      state.number += action.payload;
+    increment2: (state, action) => {
+      state.number2 += action.payload;
     },
-    decrement: (state, action) => {
-      state.number -= action.payload;
+    decrement2: (state, action) => {
+      state.number2 -= action.payload;
     },
   },
 });
 
-export const { increment, decrement } = number2Slice.actions;
+export const { increment2, decrement2 } = number2Slice.actions;
 export default number2Slice.reducer;
