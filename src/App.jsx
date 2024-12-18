@@ -9,13 +9,14 @@ import {
   increment2,
   numberSlice2Selector,
 } from "./store/reducers/number2Slice";
+import LaptopComponent from "./Components/laptopComponent";
 
 function App() {
   const number = useSelector(numberSliceSelector);
   const number2 = useSelector(numberSlice2Selector);
+
   const dispatch = useDispatch();
-  console.log(number);
-  console.log(number2);
+  //console.log(number,number2);
 
   return (
     <>
@@ -39,6 +40,9 @@ function App() {
             Number2 Decrese -
           </button>
         </div>
+        <br />
+
+        <div><LaptopComponent /></div>
       </div>
     </>
   );
