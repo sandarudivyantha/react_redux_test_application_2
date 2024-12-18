@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import { addLaptop, laptopSliceSelector } from "../store/reducers/laptopSlice";
-import { nanoid } from "@reduxjs/toolkit";
 import { useRef } from "react";
 
 const laptopComponent = () => {
@@ -15,16 +14,13 @@ const laptopComponent = () => {
 
   const addLaptopHandler = () => {
     dispatch(
-      addLaptop({
-        id: nanoid(),
-        price: price.current.value,
-        spec: {
-          cpu: cpu.current.value,
-          gen: gen.current.value,
-          ram: ram.current.value,
-          hdd: hdd.current.value,
-        },
-      })
+      addLaptop(
+        price.current.value,
+        cpu.current.value,
+        gen.current.value,
+        ram.current.value,
+        hdd.current.value
+      )
     );
   };
 
