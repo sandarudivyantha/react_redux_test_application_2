@@ -43,5 +43,6 @@ const laptopSlice = createSlice({
   },
 });
 
+export const selectLaptop = ({ laptop }) => laptop;
 export const { addLaptop } = laptopSlice.actions;
 export default laptopSlice.reducer;
