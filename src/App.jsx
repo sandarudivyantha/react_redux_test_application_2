@@ -8,6 +8,18 @@ function App() {
   const dispatch = useDispatch();
   console.log(cart);
 
+  let Total = 0;
+  if (Array.isArray(cart)) {
+    cart.forEach((ele) => {
+      Total = Total + ele.count * ele.price;
+    });
+  }
+
+  let cartCount = 0;
+  cart.forEach((ele) => {
+    cartCount = cartCount + ele.count;
+  });
+
   return (
     <>
       <div>
@@ -24,8 +36,8 @@ function App() {
         <br />
         <h1>Cart</h1>
         <hr />
-        <h3>{cart.length}</h3>
-        <h3>Total : Rs. 0</h3>
+        <h3>{cartCount}</h3>
+        <h3>Total : Rs. {Total}</h3>
       </div>
     </>
   );
