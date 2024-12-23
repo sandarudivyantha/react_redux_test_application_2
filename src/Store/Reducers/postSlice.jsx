@@ -6,12 +6,15 @@ const initialState = {
   error: null,
 };
 
-export const getPost = createAsyncThunk("getPost", async () => {
+export const getPost = createAsyncThunk("getPost", async (name) => {
   try {
     const res = await fetch("https://jsonplaceholder.typicode.com/posts");
     const data = await res.json();
     if (data) {
-      return data;
+      return {
+        name,
+        data,
+      };
     } else {
       return { err: "Some Error" };
     }
@@ -34,6 +37,7 @@ const postSlice = createSlice({
     });
     builder.addCase(getPost.rejected, (state, action) => {
       state.loading = "rejected";
+      state.error = "Some Error";
     });
   },
 });
