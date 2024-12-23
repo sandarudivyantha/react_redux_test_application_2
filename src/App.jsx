@@ -1,43 +1,39 @@
 import { useDispatch, useSelector } from "react-redux";
-import { selectLaptop } from "./Store/Reducers/laptopSlice";
-import { addItemsToCart, selectCart } from "./Store/Reducers/cartSlice";
+import { getPost, selectAllPost } from "./Store/Reducers/postSlice";
 
 function App() {
-  const laptop = useSelector(selectLaptop);
-  const cart = useSelector(selectCart);
+  const postObj = useSelector(selectAllPost);
   const dispatch = useDispatch();
-  console.log(cart);
+  console.log(postObj);
 
-  let Total = 0;
-  if (Array.isArray(cart)) {
-    cart.forEach((ele) => {
-      Total = Total + ele.count * ele.price;
-    });
-  }
+  // let Total = 0;
+  // if (Array.isArray(cart)) {
+  //   cart.forEach((ele) => {
+  //     Total = Total + ele.count * ele.price;
+  //   });
+  // }
 
-  let cartCount = 0;
-  cart.forEach((ele) => {
-    cartCount = cartCount + ele.count;
-  });
+  // let cartCount = 0;
+  // cart.forEach((ele) => {
+  //   cartCount = cartCount + ele.count;
+  // });
 
   return (
     <>
       <div>
-        {laptop.map(({ id, price, cpu, ram }) => (
+        {!postObj.loading === "completed" && <h1>Loading......</h1>}
+        <button onClick={() => dispatch(getPost('Sandaru'))}>Get Data</button>
+
+        {/* {laptop.map(({ id, price, cpu, ram }) => (
           <p key={id}>
             {price}|{cpu}|{ram} &nbsp;
-            <button
-              onClick={() => dispatch(addItemsToCart(id, price, cpu, ram))}
-            >
-              Add to Cart
-            </button>
           </p>
         ))}
         <br />
         <h1>Cart</h1>
         <hr />
         <h3>{cartCount}</h3>
-        <h3>Total : Rs. {Total}</h3>
+        <h3>Total : Rs. {Total}</h3> */}
       </div>
     </>
   );
