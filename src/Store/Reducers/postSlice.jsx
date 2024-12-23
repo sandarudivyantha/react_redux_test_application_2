@@ -24,9 +24,19 @@ const postSlice = createSlice({
   name: "post",
   initialState,
   reducers: {},
-  extraReducers: (builder) => {},
+  extraReducers: (builder) => {
+    builder.addCase(getPost.pending, (state, action) => {
+      state.loading = "pending";
+    });
+    builder.addCase(getPost.fulfilled, (state, action) => {
+      state.loading = "completed";
+      state.data = action.payload;
+    });
+    builder.addCase(getPost.rejected, (state, action) => {
+      state.loading = "rejected";
+    });
+  },
 });
 
-export const selectPost = ({ post }) => post;
-export const { addPost } = postSlice.actions;
+export const selectAllPost = ({ post }) => post;
 export default postSlice.reducer;
