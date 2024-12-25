@@ -1,8 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { getPost, selectAllPost } from "./Store/Reducers/postSlice";
+import { numberSelector } from "./Store/Reducers/numberSlice";
 
 function App() {
   const postObj = useSelector(selectAllPost);
+  const number = useSelector(numberSelector);
+
   const dispatch = useDispatch();
   console.log(postObj);
 
@@ -22,7 +25,7 @@ function App() {
     <>
       <div>
         {!postObj.loading === "completed" && <h1>Loading......</h1>}
-        <button onClick={() => dispatch(getPost('Sandaru'))}>Get Data</button>
+        <button onClick={() => dispatch(getPost("Sandaru"))}>Get Data</button>
 
         {/* {laptop.map(({ id, price, cpu, ram }) => (
           <p key={id}>
