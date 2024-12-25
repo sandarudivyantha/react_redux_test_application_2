@@ -28,7 +28,7 @@ function App() {
         <button onClick={() => dispatch(getPost("Sandaru"))}>Get Data</button>
 
         <h1>{number}</h1>
-        <button onClick={() => dispatch(increment(5))}>Increment</button>
+        <button onClick={() => dispatch(increment('Sudda',10,'Kalutara'))}>Increment</button>
 
         {/* {laptop.map(({ id, price, cpu, ram }) => (
           <p key={id}>
