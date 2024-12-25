@@ -16,4 +16,5 @@ const numberReducer = createReducer(initialState, (builder) => {
   });
 });
 
+export const numberSelector = (store) => store.number.number;
 export default numberReducer;
