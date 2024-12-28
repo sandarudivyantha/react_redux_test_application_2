@@ -2,6 +2,7 @@ import {
   createAction,
   createAsyncThunk,
   createReducer,
+  createSelector,
 } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -21,6 +22,7 @@ export const increment = createAction(
     };
   }
 );
+
 export const decrement = createAction("number-decrement");
 
 export const getUsers = createAsyncThunk("number/getUsers", async () => {
@@ -45,5 +47,12 @@ const numberReducer = createReducer(initialState, (builder) => {
   });
 });
 
-export const numberSelector = (store) => store.number.number;
+const numberSel = (store) => {
+  return store.number.number;
+};
+
+export const numberSelector = createSelector([numberSel], (num) => {
+  console.log("Number is running");
+  return num;
+});
 export default numberReducer;
