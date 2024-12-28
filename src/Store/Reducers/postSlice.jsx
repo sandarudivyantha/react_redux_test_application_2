@@ -1,4 +1,8 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {
+  createAsyncThunk,
+  createSelector,
+  createSlice,
+} from "@reduxjs/toolkit";
 
 const initialState = {
   data: [],
@@ -42,5 +46,12 @@ const postSlice = createSlice({
   },
 });
 
-export const selectAllPost = ({ post }) => post;
+const selAllPost = (store) => {
+  return store.post;
+};
+
+export const selectAllPost = createSelector([selAllPost], (post) => {
+  console.log("Post is running");
+  return post;
+});
 export default postSlice.reducer;
