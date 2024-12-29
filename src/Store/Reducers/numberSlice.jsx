@@ -53,6 +53,7 @@ const numberSel = (store) => {
 
 export const numberSelector = createSelector([numberSel], (num) => {
   console.log("Number is running");
-  return num;
+  return num +0; // Example transformation
 });
+
 export default numberReducer;
