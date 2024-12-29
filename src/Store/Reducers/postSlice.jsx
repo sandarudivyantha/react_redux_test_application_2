@@ -52,6 +52,10 @@ const selAllPost = (store) => {
 
 export const selectAllPost = createSelector([selAllPost], (post) => {
   console.log("Post is running");
-  return post;
+  return {
+    loading: post.loading,
+    postCount: post.data.length, 
+  };
 });
+
 export default postSlice.reducer;
