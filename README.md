@@ -115,3 +115,8 @@ src
   }
 }
 ```
+
+## Future Improvements
+- Add error handling for API requests.
+- Implement detailed loading states for better UX.
+- Expand the app to include more features such as user creation and deletion.
