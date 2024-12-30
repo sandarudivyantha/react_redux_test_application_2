@@ -1,23 +1,24 @@
 import {
   createAsyncThunk,
+  createEntityAdapter,
   createSelector,
   createSlice,
 } from "@reduxjs/toolkit";
 
-const initialState = {
-  data: [],
+const postState = createEntityAdapter({
+  selectId: (ele) => ele.id,
+});
+
+const initialState = postState.getInitialState({
   loading: "idle",
   error: null,
-};
+});
 
-export const getPost = createAsyncThunk("getPost", async (name) => {
+export const getPost = createAsyncThunk("getPost", async () => {
   const res = await fetch("https://jsonplaceholder.typicode.com/posts");
   const data = await res.json();
   if (Array.isArray(data)) {
-    return {
-      name,
-      data,
-    };
+    return data;
   } else {
     return { err: "Some Error" };
   }
@@ -54,7 +55,7 @@ export const selectAllPost = createSelector([selAllPost], (post) => {
   console.log("Post is running");
   return {
     loading: post.loading,
-    postCount: post.data.length, 
+    postCount: post.data.length,
   };
 });
 
