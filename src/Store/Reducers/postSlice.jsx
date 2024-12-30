@@ -37,7 +37,7 @@ const postSlice = createSlice({
         state.loading = "Fail";
       } else {
         state.loading = "completed";
-        state.data = action.payload;
+        postState.addMany(state, action.payload);
       }
     });
     builder.addCase(getPost.rejected, (state, action) => {
@@ -47,16 +47,12 @@ const postSlice = createSlice({
   },
 });
 
-const selAllPost = (store) => {
-  return store.post;
-};
+export const { selectIds, selectAll, selectById, selectEntities, selectTotal } =
+  postState.getSelectors((store) => store.post);
 
-export const selectAllPost = createSelector([selAllPost], (post) => {
-  console.log("Post is running");
-  return {
-    loading: post.loading,
-    postCount: post.data.length,
-  };
-});
+export const selectPostLoading = createSelector(
+  [(store) => store.post.loading],
+  (loading) => loading
+);
 
 export default postSlice.reducer;
