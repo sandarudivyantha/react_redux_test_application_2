@@ -25,7 +25,7 @@ export const increment = createAction(
 
 export const decrement = createAction("number-decrement");
 
-export const getUsers = createAsyncThunk("number/getUsers", async () => {
+export const getUser = createAsyncThunk("number/getUsers", async () => {
   const res = await fetch("https://jsonplaceholder.typicode.com/users");
   const data = await res.json();
   if (Array.isArray(data)) {
@@ -42,7 +42,7 @@ const numberReducer = createReducer(initialState, (builder) => {
   builder.addCase(decrement, (state, action) => {
     state.number -= action.payload.value;
   });
-  builder.addCase(getUsers.fulfilled, (state, action) => {
+  builder.addCase(getUser.fulfilled, (state, action) => {
     state.users = action.payload;
   });
 });

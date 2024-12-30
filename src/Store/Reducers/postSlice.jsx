@@ -28,9 +28,10 @@ const postSlice = createSlice({
   name: "post",
   initialState,
   reducers: {
-    updatePost: (state, action) => {
-      postState.updateOne(state, action.payload);
-    },
+    updatePost: postState.updateOne,
+    // (state, action) => {
+    //   postState.updateOne(state, action.payload);
+    // },
   },
   extraReducers: (builder) => {
     builder.addCase(getPost.pending, (state, action) => {
