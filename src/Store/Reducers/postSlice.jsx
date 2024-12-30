@@ -1,7 +1,6 @@
 import {
   createAsyncThunk,
   createEntityAdapter,
-  createSelector,
   createSlice,
 } from "@reduxjs/toolkit";
 
@@ -28,7 +27,11 @@ export const getPost = createAsyncThunk("getPost", async () => {
 const postSlice = createSlice({
   name: "post",
   initialState,
-  reducers: {},
+  reducers: {
+    updatePost: (state, action) => {
+      postState.updateOne(state, action.payload);
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getPost.pending, (state, action) => {
       state.loading = "pending";
@@ -57,5 +60,7 @@ export const { selectIds, selectAll, selectById, selectEntities, selectTotal } =
 //   (loading) => loading
 // );
 export const selectPostLoading = (state) => state.post.loading;
+
+export const { updatePost } = postSlice.actions;
 
 export default postSlice.reducer;

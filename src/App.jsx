@@ -1,8 +1,10 @@
+import React, { useRef } from "react"; 
 import { useDispatch, useSelector } from "react-redux";
 import {
   getPost,
-  selectAll,
+  selectIds,
   selectPostLoading,
+  updatePost,
 } from "./Store/Reducers/postSlice";
 import { increment, numberSelector } from "./Store/Reducers/numberSlice";
 import Post from "./Components/Post";
@@ -13,7 +15,7 @@ function App() {
 
   const number = useSelector(numberSelector);
   const postLoading = useSelector(selectPostLoading);
-  const selectPost = useSelector(selectAll);
+  const selectPost = useSelector(selectIds);
   const dispatch = useDispatch();
 
   console.log(selectPost);
@@ -27,13 +29,30 @@ function App() {
         <button onClick={() => dispatch(increment("Sudda", 10, "Kalutara"))}>
           Increment
         </button>
+
         <hr />
+
         <h2>Change Post</h2>
-        <input placeholder="Post title" ref={postTitleRef} /><br/>
-        <input placeholder="Post id" ref={postIdRef} /><br/>
-        <button>Submit</button>
-        {selectPost.map((ele) => (
-          <Post ele={ele} key={ele.id} />
+        <input placeholder="Post title" ref={postTitleRef} />
+        <br />
+        <input placeholder="Post id" ref={postIdRef} />
+        <br />
+
+        <button
+          onClick={() =>
+            dispatch(
+              updatePost({
+                id: Number(postIdRef.current.value),
+                changes: { title: postTitleRef.current.value },
+              })
+            )
+          }
+        >
+          Submit
+        </button>
+
+        {selectPost.map((postId) => (
+          <Post postId={postId} key={postId.id} />
         ))}
       </div>
     </>
